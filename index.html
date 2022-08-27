@@ -8,7 +8,7 @@
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
-    Paymob("pk_test_qPyFLWDCQwdAQJrfIYATkpNsYQkGcDBz").checkoutButton(params.csk).mount("#paymob-checkout");
+    Paymob("pk_live_q8HvfVuhaCjp6t1lgcEr2xTw4XPQZnUp").checkoutButton(params.csk).mount("#paymob-checkout");
 
   </script>
 </body>
