@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<body>
-  <div id="paymob-checkout"></div>
-  <script src="https://flashjs.paymob.com/v1/paymob.js"></script>
-  <script>
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    });
-    Paymob("pk_live_q8HvfVuhaCjp6t1lgcEr2xTw4XPQZnUp").checkoutButton(params.csk).mount("#paymob-checkout");
-
-  </script>
-</body>
-
+  <body>
+    <div id="paymob-checkout"></div>
+    <script src="https://flashjs.paymob.com/v1/paymob.js"></script>
+    <script>
+      const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+      });
+      Paymob("pk_live_q8HvfVuhaCjp6t1lgcEr2xTw4XPQZnUp")
+        .checkoutButton(params.csk)
+        .mount("#paymob-checkout");
+    </script>
+  </body>
 </html>
