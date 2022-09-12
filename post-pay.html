@@ -8,12 +8,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="container mx-auto bg-white">
-      <div id="params"></div>
+    <div class="container h-screen bg-white flex flex-col">
+      <div class="m-auto">
+        <h1
+          id="success"
+          class="hidden font-black capitalize text-2xl text-center text-green-500"
+        >
+          thank you for choosing Dr.ahmed dabour
+        </h1>
+        <h1
+          id="fail"
+          class="hidden font-black capitalize text-2xl text-center text-red-500"
+        >
+          sorry your payment failed
+        </h1>
+        <h1 id="message" class="text-xl text-center"></h1>
+      </div>
     </div>
   </body>
 
   <script>
-    document.querySelector("#params").innerHTML = window.location;
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    const msg = params["data.message"].split("¤")[0];
+    const success = params.success === "true";
+    if (success) {
+      document.querySelector("#success").classList.remove("hidden");
+    } else {
+      document.querySelector("#fail").classList.remove("hidden");
+    }
+    document.querySelector("#message").innerHTML = `reason: ${msg}`;
   </script>
 </html>
