@@ -23,6 +23,7 @@
           sorry your payment failed
         </h1>
         <h1 id="message" class="text-xl text-center"></h1>
+        <h1 id="extras" class="text-xl text-center"></h1>
       </div>
     </div>
   </body>
@@ -39,6 +40,7 @@
       document.querySelector("#fail").classList.remove("hidden");
     }
     document.querySelector("#message").innerHTML = `reason: ${msg}`;
-    console.log(params["extras"]);
+    document.querySelector("#extras").innerHTML = params["extras"];
+    alert("something");
   </script>
 </html>
