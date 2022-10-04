@@ -41,25 +41,23 @@
     });
     const msg = params["data.message"].split("¤")[0];
     const success = params.success === "true";
+    const intentionId = localStorage.getItem("intentionId");
+    axios
+      .post(
+        "https://13bb-197-51-208-139.ngrok.io/api/patient/appointment/create",
+        {
+          intentionId,
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     if (success) {
       document.querySelector("#success").classList.remove("hidden");
       document.querySelector("#message").innerHTML = `${msg}`;
-
-      const intentionId = localStorage.getItem("intentionId");
-
-      axios
-        .post(
-          "https://13bb-197-51-208-139.ngrok.io/api/patient/appointment/create",
-          {
-            intentionId,
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     } else {
       document.querySelector("#fail").classList.remove("hidden");
       document.querySelector("#message").innerHTML = `reason: ${msg}`;
