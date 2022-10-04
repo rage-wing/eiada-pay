@@ -23,10 +23,17 @@
           sorry your payment failed
         </h1>
         <h1 id="message" class="text-xl text-center"></h1>
-        <h1 id="extras" class="text-xl text-center"></h1>
+        <h1 id="extras" class="hidden text-xl text-center"></h1>
       </div>
     </div>
   </body>
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
 
   <script>
     const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -36,10 +43,28 @@
     const success = params.success === "true";
     if (success) {
       document.querySelector("#success").classList.remove("hidden");
+      document.querySelector("#message").innerHTML = `${msg}`;
+
+      const intentionId = localStorage.getItem("intentionId");
+
+      axios
+        .post(
+          "https://13bb-197-51-208-139.ngrok.io/api/patient/appointment/create",
+          {
+            intentionId,
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       document.querySelector("#fail").classList.remove("hidden");
+      document.querySelector("#message").innerHTML = `reason: ${msg}`;
     }
-    document.querySelector("#message").innerHTML = `reason: ${msg}`;
+
     document.querySelector("#extras").innerHTML = window.location.href;
   </script>
 </html>

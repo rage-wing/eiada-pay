@@ -10,6 +10,8 @@
       Paymob("pk_live_q8HvfVuhaCjp6t1lgcEr2xTw4XPQZnUp")
         .checkoutButton(params.csk)
         .mount("#paymob-checkout");
+
+      localStorage.setItem("intentionId", params.id);
     </script>
   </body>
 </html>
