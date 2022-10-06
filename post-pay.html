@@ -42,6 +42,8 @@
     const msg = params["data.message"].split("¤")[0];
     const success = params.success === "true";
     const intentionId = localStorage.getItem("intentionId");
+    alert(intentionId);
+    alert(msg);
     axios
       .post(
         "https://13bb-197-51-208-139.ngrok.io/api/patient/appointment/create",
