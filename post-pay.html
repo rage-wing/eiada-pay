@@ -42,11 +42,9 @@
     const msg = params["data.message"].split("¤")[0];
     const success = params.success === "true";
     const intentionId = localStorage.getItem("intentionId");
-    alert(intentionId);
-    alert(msg);
     axios
       .post(
-        "https://9098-197-51-208-139.ngrok.io/api/patient/appointment/create",
+        "https://eiada-dr-ahmed.herokuapp.com/api/patient/appointment/create",
         {
           intentionId,
         }
